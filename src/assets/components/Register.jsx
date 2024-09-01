@@ -1,0 +1,149 @@
+import React from 'react';
+import InputAlert from './InputAlert';
+import { Link, useNavigate } from 'react-router-dom';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { Alert } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { useMutation } from '@tanstack/react-query';
+import { register } from '../API/authentication';
+import Loader from './Loader';
+
+export default function Register() {
+
+  let navigate = useNavigate();
+  let dispatch = useDispatch();
+
+  let { mutate, data, error, isPending } = useMutation({
+    mutationFn: register,
+    onSuccess: (data) => {
+      navigate('/home');
+      localStorage.setItem('freshCartToken', data.data.token);
+      dispatch(signin());
+    }
+  });
+
+  let validationSchema = Yup.object({
+    name: Yup.string()
+      .required('Name is required')
+      .matches(/^[A-Za-z]{3,}(?: [A-Za-z]{3,})*$/, 'Special characters and numbers not allowed'),
+
+    email: Yup.string()
+      .email('Email not valid *example@yyy.zzz')
+      .required('Email is required')
+      .matches(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 'Email not valid *example@yyy.zzz'),
+
+    password: Yup.string()
+      .required('Password is required')
+      .matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/, 'Enter valid password *Minimum eight characters, at least one letter and one number:*'),
+
+    rePassword: Yup.string()
+      .oneOf([Yup.ref('password')], "Repassword doesn't match the password")
+      .required('Repassword is required'),
+
+    phone: Yup.string()
+      .required('Phone is required')
+      .matches(/^0(10|11|12|15)\d{8}$/, 'Enter valid Phone Number')
+  });
+
+  function onSubmit(values) {
+    mutate(values);
+  }
+
+  let formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      password: '',
+      rePassword: '',
+      phone: ''
+    },
+    validationSchema,
+    onSubmit
+  });
+
+  return (
+    <div className='py-16'>
+      <div className='flex flex-col items-center'>
+
+        {isPending ? <Loader /> : ''}
+        <div className='flex justify-center items-center mx-auto w-[90px] h-[90px] bg-gray-50 rounded-full'>
+          <div className='flex justify-center items-center w-[70px] h-[70px] bg-gray-200 rounded-full'>
+            <i className='fa-solid fa-user text-black text-4xl'></i>
+          </div>
+        </div>
+        <h1 className='text-3xl font-[600] mb-2 text-center'>Sign Up</h1>
+
+        <form className='mt-4' onSubmit={formik.handleSubmit} noValidate>
+          <div className='flex flex-col w-full'>
+            <label htmlFor="name">Name:</label>
+            <input 
+              onChange={formik.handleChange} 
+              onBlur={formik.handleBlur} 
+              value={formik.values.name}
+              type="text" 
+              id='name' 
+              name='name' 
+              className='rounded w-[95vw] sm:w-[600px] border-gray-300 border-2 focus:border-[#000] focus:ring-0'/>
+          </div>
+
+          {formik.touched.name && formik.errors.name ? <div className='mt-2'><Alert severity="error">{formik.errors.name}</Alert></div> : ''}
+
+          <div className='flex flex-col w-full mt-2'>
+            <label htmlFor="email">Email:</label>
+            <input onChange={formik.handleChange} 
+              onBlur={formik.handleBlur} 
+              value={formik.values.email} 
+              type="email" 
+              id='email' 
+              name='email' 
+              className='rounded w-[95vw] sm:w-[600px] border-gray-300 border-2 focus:border-[#000] focus:ring-0'/>
+          </div>
+
+          {formik.touched.email && formik.errors.email ? <div className='mt-2'><Alert severity="error">{formik.errors.email}</Alert></div> : ''}
+
+          <div className='flex flex-col w-full mt-2'>
+            <label htmlFor="password">Password:</label>
+            <input onChange={formik.handleChange} 
+              onBlur={formik.handleBlur} 
+              value={formik.values.password}
+              type="password" 
+              id='password' 
+              name='password' 
+              className='rounded w-[95vw] sm:w-[600px] border-gray-300 border-2 focus:border-[#000] focus:ring-0'/>
+          </div>
+
+          {formik.touched.password && formik.errors.password ? <div className='mt-2'><Alert severity="error">{formik.errors.password}</Alert></div> : ''}
+
+          <div className='flex flex-col w-full mt-2'>
+            <label htmlFor="rePassword">Repassword:</label>
+            <input onChange={formik.handleChange} 
+              onBlur={formik.handleBlur} 
+              value={formik.values.rePassword} 
+              type="password" 
+              id='rePassword' 
+              name='rePassword' 
+              className='rounded w-[95vw] sm:w-[600px] border-gray-300 border-2 focus:border-[#000] focus:ring-0'/>
+          </div>
+
+          {formik.touched.rePassword && formik.errors.rePassword ? <div className='mt-2'><Alert severity="error">{formik.errors.rePassword}</Alert></div> : ''}
+
+          <div className='flex flex-col w-full mt-2'>
+            <label htmlFor="phone">Phone:</label>
+            <input onChange={formik.handleChange} 
+              onBlur={formik.handleBlur} 
+              value={formik.values.phone} 
+              type="tel" 
+              id='phone' 
+              name='phone' 
+              className='rounded w-[95vw] sm:w-[600px] border-gray-300 border-2 focus:border-[#000] focus:ring-0'/>
+          </div>
+
+          {formik.touched.phone && formik.errors.phone ? <div className='mt-2'><Alert severity="error">{formik.errors.phone}</Alert></div> : ''}
+
+          <button type='submit' className='bg-black text-white sm:w-[600px] w-full py-2 rounded mt-3'>Register</button>
+        </form>
+      </div>
+    </div>
+  )
+}
