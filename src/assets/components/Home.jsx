@@ -28,10 +28,10 @@ export default function Home() {
         <div className='w-[40%] overflow-hidden'>
           <div className='home-images flex flex-col h-full'>
             <div className='flex-grow'>
-              <img src={banner1} className='h-full object-cover' alt="" />
+              <img src={banner1} className='sm:h-[225px] h-[100px] object-cover' alt="" />
             </div>
             <div className='flex-grow'>
-              <img src={banner2} className='h-full object-cover' alt="" />
+              <img src={banner2} className='sm:h-[225px] h-[100px] object-cover' alt="" />
             </div>
           </div>
         </div>
