@@ -194,10 +194,10 @@ export default function Nav() {
                   </div>
                 </NavLink>
               </NavbarMenuItem>
-            <NavbarMenuItem className="w-fit mt-auto mb-5" onClick={() => { localStorage.clear('freshCartToken'); navigate('/login'); window.scrollTo(0, 0);}}>
-              <div className="flex items-center text-black dark:text-gray-300 cursor-pointer w-fit" >
-                <i className="fa-solid fa-arrow-right-from-bracket text-base"></i>
-                <p className="ml-2 text-lg">sign out</p>
+            <NavbarMenuItem className="w-fit mb-1" onClick={() => { localStorage.clear('freshCartToken'); navigate('/login'); window.scrollTo(0, 0);}}>
+              <div className="flex items-center nav-link cursor-pointer" >
+                <i className="fa-solid fa-arrow-right-from-bracket text-sm"></i>
+                <p className="ml-2 text-base">sign out</p>
               </div>
             </NavbarMenuItem>
             {/* <NavbarMenuItem className="w-full flex items-center justify-center">
