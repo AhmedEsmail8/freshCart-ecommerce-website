@@ -74,7 +74,7 @@ export default function NewPassword() {
     return <Navigate to={'/'}></Navigate>
 
   return (
-    <div className='flex flex-col items-center mt-6'>
+    <div className='flex flex-col items-center py-16'>
       <div className='flex justify-center items-center w-[80px] h-[80px] bg-gray-50 rounded-full dark:bg-[#1b1b1b]'>
         <div className='flex justify-center items-center w-[60px] h-[60px] bg-gray-200 rounded-full dark:bg-[#1b1b1b]'>
           <i className='fa-solid fa-key text-black text-2xl dark:text-white'></i>
@@ -84,10 +84,10 @@ export default function NewPassword() {
       <h2 className='text-2xl font-[600]'>Set new password</h2>
       <p className='text-gray-400 w-[300px] text-center'>Your new password must be different to previously used passwords.</p>
 
-      <form onSubmit={formik.handleSubmit} className='mt-4'>
+      <form onSubmit={formik.handleSubmit} className='mt-4 md:w-[400px] w-[95%]'>
         {/* <div className='flex flex-col w-full'>
                     <label htmlFor="password">Password</label>
-                    <input onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.password} type="password" id='password' name='password' className='dark:text-black rounded w-[95vw] sm:w-[400px] border-gray-300 border-2 focus:border-[#000] focus:ring-0' />
+                    <input onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.password} type="password" id='password' name='password' className='dark:text-black rounded w-full border-gray-300 border-2 focus:border-[#000] focus:ring-0' />
                 </div> */}
         <div className='flex flex-col w-full mt-2'>
           <label htmlFor="password">Password:</label>
@@ -117,11 +117,11 @@ export default function NewPassword() {
           />
         </div>
 
-        {formik.touched.password && formik.errors.password ? <div className='mt-2 w-[95vw] sm:w-[400px]'><Alert severity='error'>{formik.errors.password}</Alert></div> : ''}
+        {formik.touched.password && formik.errors.password ? <div className='mt-2 w-full'><Alert severity='error'>{formik.errors.password}</Alert></div> : ''}
 
         {/* <div className='flex flex-col w-full mt-3'>
                     <label htmlFor="repassword">Confirm password</label>
-                    <input onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.repassword} type="password" id='repassword' name='repassword' className='dark:text-black rounded w-[95vw] sm:w-[400px] border-gray-300 border-2 focus:border-[#000] focus:ring-0' />
+                    <input onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.repassword} type="password" id='repassword' name='repassword' className='dark:text-black rounded w-full border-gray-300 border-2 focus:border-[#000] focus:ring-0' />
                 </div> */}
 
         <div className='flex flex-col w-full mt-2'>
@@ -147,10 +147,10 @@ export default function NewPassword() {
           />
         </div>
 
-        {formik.touched.repassword && formik.errors.repassword ? <div className='mt-2 w-[95vw] sm:w-[400px]'><Alert severity='error'>{formik.errors.repassword}</Alert></div> : ''}
+        {formik.touched.repassword && formik.errors.repassword ? <div className='mt-2 w-full'><Alert severity='error'>{formik.errors.repassword}</Alert></div> : ''}
 
 
-        <button type='submit' className='bg-black hover:bg-[#222222] dark:hover:bg-[#050505] text-white sm:w-[400px] w-full py-2 rounded mt-3'>{loading ? <i className="fa-solid fa-circle-notch fa-spin"></i> : 'Reset Password'}</button>
+        <button type='submit' className='bg-black hover:bg-[#222222] dark:hover:bg-[#050505] text-white w-full py-2 rounded mt-3'>{loading ? <i className="fa-solid fa-circle-notch fa-spin"></i> : 'Reset Password'}</button>
       </form>
     </div>
   )

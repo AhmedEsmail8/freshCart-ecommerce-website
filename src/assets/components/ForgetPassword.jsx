@@ -67,7 +67,7 @@ export default function ForgetPassword() {
       <h2 className='text-2xl font-[600]'>Forgot password?</h2>
       <p className='text-gray-400'>No worries, we'll send you reset instructions</p>
 
-      <form onSubmit={formik.handleSubmit} className='mt-4'>
+      <form onSubmit={formik.handleSubmit} className='mt-4 md:w-[400px] w-[95%]'>
         {/* <div className='flex flex-col w-full'>
           <label htmlFor="email">Email:</label>
           <input onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.email} type="email" id='email' name='email' className='dark:text-black rounded w-[95vw] sm:w-[400px] border-gray-300 border-2 focus:border-[#000] focus:ring-0' />
@@ -97,7 +97,7 @@ export default function ForgetPassword() {
 
         {formik.touched.email && formik.errors.email ? <div className='mt-2'><Alert severity='error'>{formik.errors.email}</Alert></div> : ''}
 
-        <button type='submit' className='bg-black text-white sm:w-[400px] w-full py-2 rounded mt-3'>Reset Password</button>
+        <button type='submit' className='bg-black text-white w-full py-2 rounded mt-3'>Reset Password</button>
       </form>
 
       <Link to={'/login'} className='text-gray-500 dark:hover:text-white mt-3'>

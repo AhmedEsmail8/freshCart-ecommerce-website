@@ -87,7 +87,7 @@ export default function Register() {
         </div>
         <h1 className='text-3xl font-[600] mb-2 text-center'>Sign Up</h1>
 
-        <form className='mt-4' onSubmit={formik.handleSubmit} noValidate>
+        <form className='mt-4 md:w-[600px] w-[95%]' onSubmit={formik.handleSubmit} noValidate>
           {/* <div className='flex flex-col w-full'>
             <label htmlFor="name">Name:</label>
             <input 
@@ -273,7 +273,7 @@ export default function Register() {
 
           {formik.touched.phone && formik.errors.phone ? <div className='mt-2'><Alert severity="error">{formik.errors.phone}</Alert></div> : ''}
 
-          <button type='submit' className='bg-black text-white sm:w-[600px] w-full py-2 rounded mt-3'>Register</button>
+          <button type='submit' className='bg-black text-white w-full py-2 rounded mt-3'>Register</button>
         </form>
       </div>
     </div>

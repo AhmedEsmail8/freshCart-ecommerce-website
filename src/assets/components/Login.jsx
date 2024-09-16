@@ -89,7 +89,7 @@ export default function Login() {
         </div>
         <h1 className='text-3xl font-[600] mb-2 text-center'>Sign in</h1>
 
-        <form className='mt-4' onSubmit={formik.handleSubmit} noValidate>
+        <form className='mt-4 md:w-[400px] w-[95%]' onSubmit={formik.handleSubmit} noValidate>
 
           {!loginStatus ? <div className='mb-2 w-full'><Alert severity="error">Invalid email or password.</Alert></div> : ''}
           <div className='flex flex-col w-full'>
@@ -153,7 +153,7 @@ export default function Login() {
           </div> */}
 
 
-          <button type='submit' className='bg-black text-white sm:w-[400px] w-full py-2 rounded mt-3'>login</button>
+          <button type='submit' className='bg-black text-white w-full py-2 rounded mt-3'>login</button>
           <Link to={'/forgetpassword'} className='mt-2 text-gray-500 block hover:text-black dark:hover:text-gray-300 font-[500] transition-colors w-fit'>Forget your password?</Link>
 
         </form>

@@ -44,12 +44,11 @@ export default function Nav() {
   return (
     <Navbar isMenuOpen={isMenuOpen} className="bg-custom-gray dark:bg-[#121212]">
       <NavbarContent>
-        {localStorage.getItem('freshCartToken')
-          ? <NavbarMenuToggle
+        <NavbarMenuToggle
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             className="sm:hidden"
             onClick={() => { setIsMenuOpen(!isMenuOpen) }}
-          /> : ''}
+          />
         <NavbarBrand>
           <Link className='text-2xl font-extrabold text-black dark:text-white cursor-pointer' to={'/'} onClick={window.scrollTo(0, 0)}>FreshCart</Link>
         </NavbarBrand>
@@ -108,12 +107,12 @@ export default function Nav() {
           </>
         ) : (
           <NavbarContent justify="end">
-            <NavbarItem>
+            <NavbarItem className="sm:flex hidden">
               <NavLink to={'/login'} className={'nav-link'} onClick={window.scrollTo(0, 0)}>
                 Login
               </NavLink>
             </NavbarItem>
-            <NavbarItem>
+            <NavbarItem className="sm:flex hidden">
               <NavLink to={'/register'} className={'nav-link'} onClick={window.scrollTo(0, 0)}>
                 Register
               </NavLink>
@@ -200,13 +199,21 @@ export default function Nav() {
                 <p className="ml-2 text-base">sign out</p>
               </div>
             </NavbarMenuItem>
-            {/* <NavbarMenuItem className="w-full flex items-center justify-center">
-            <Button as={Link} href="#" variant="flat" className="font-bold p-0 bg-black w-[90%] hover:bg-black text-white absolute bottom-5 mx-auto" onClick={() => { localStorage.clear('freshCartToken'); navigate('/login'); }}>
-                  Sign Out
-                </Button>
-            </NavbarMenuItem> */}
           </NavbarMenu>
-        ) : ''}
+        ) : (
+          <NavbarMenu isOpen={isMenuOpen} className="w-full">
+            <NavbarMenuItem className="w-fit mb-1">
+            <NavLink to={'/login'} className={'nav-link text-base'}  onClick={() => { setIsMenuOpen(false); window.scrollTo(0, 0); }}>
+                Login
+              </NavLink>
+            </NavbarMenuItem>
+            <NavbarMenuItem className="w-fit mb-1">
+            <NavLink to={'/register'} className={'nav-link text-base'}  onClick={() => { setIsMenuOpen(false); window.scrollTo(0, 0); }}>
+                Register
+              </NavLink>
+            </NavbarMenuItem>
+      </NavbarMenu>
+        )}
     </Navbar>
   );
 }
