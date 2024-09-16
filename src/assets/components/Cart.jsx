@@ -43,7 +43,7 @@ export default function Cart() {
       <AddressModal modal={addressModal} setModal={setAddressModal} cartId={data?.data?.data?._id}></AddressModal>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
   <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:border-b dark:border-gray-950 dark:bg-[#1b1b1b] dark:text-gray-400">
       <tr>
         <th scope="col" className="px-16 py-3 text-center"><span className="sr-only">Image</span></th>
         <th scope="col" className="px-6 py-3 text-center">Product</th>
@@ -56,9 +56,9 @@ export default function Cart() {
       {data?.data?.data?.products?.map((product)=>{
         return <CartProduct product={product} key={product._id} refetch={refetch} refetching={isLoading}></CartProduct>
       })}
-      <tr className={` border-b dark:bg-gray-800 dark:border-gray-700 bg-gray-50 dark:hover:bg-gray-600`}>
+      <tr className={`border-b dark:bg-[#1b1b1b] dark:border-gray-950 bg-gray-50 dark:hover:bg-[#262626]`}>
       <td colSpan={5}>
-      <div className='text-xl p-4 text-black'><span className='font-bold'>Total price:</span> {data?.data?.data.totalCartPrice}</div>
+      <div className='text-xl p-4 text-black dark:text-gray-200'><span className='font-bold'>Total price:</span> {data?.data?.data.totalCartPrice}</div>
       </td>
       </tr>
     </tbody>
@@ -123,27 +123,27 @@ function CartProduct({product, refetch, refetching}){
   }
 
   return <>
-<tr className={`bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600`}>
+<tr className={`bg-white border-b dark:bg-[#1b1b1b] dark:border-gray-950 hover:bg-gray-50 dark:hover:bg-[#262626]`}>
         <td className="p-4 mx-auto">
           <img src={product.product.imageCover} className="w-16 md:w-32 max-w-full max-h-full cursor-pointer hover:scale-[1.09] transition-all" alt="Apple Watch" onClick={handleClick}/>
         </td>
-        <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white text-center">
+        <td className="min-w-[250px] px-6 py-4 font-semibold text-gray-900 dark:text-white text-center">
           {product.product.title}
         </td>
         <td className="px-6 py-4 ">
           <div className="flex items-center justify-center">
-            <button onClick={decreaseCount} className="inline-flex items-center justify-center p-1 me-3 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
+            <button onClick={decreaseCount} className="inline-flex items-center justify-center p-1 me-3 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-[#1b1b1b] dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
               <span className="sr-only">Quantity button</span>
               <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M1 1h16" />
               </svg>
             </button>
             <div>
-              <div className="flex justify-center items-center bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 px-2.5 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <div className="flex justify-center items-center bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg px-2.5 py-1 dark:bg-[#1b1b1b] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                 {!countFlag ? product.count :<i className='fa-solid fa-circle-notch fa-spin py-1'></i>}
               </div>
             </div>
-            <button onClick={increaseCount} className="inline-flex items-center justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
+            <button onClick={increaseCount} className="inline-flex items-center justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-[#1b1b1b] dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
               <span className="sr-only">Quantity button</span>
               <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 1v16M1 9h16" />

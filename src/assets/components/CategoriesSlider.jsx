@@ -6,10 +6,11 @@ import img3 from '../images/slider-image-3.jpeg'
 import React, { useState } from "react";
 import Slider from "react-slick";
 import { motion } from "framer-motion"
+import { useNavigate } from "react-router-dom";
 
 export default function CategoriesSlider({data}) {
 
-  console.log(data);
+  let navigate = useNavigate();
 
   var settings = {
     dots: true,
@@ -53,15 +54,20 @@ export default function CategoriesSlider({data}) {
       }
     ]
   };
+
+  function handleClick(id){
+    navigate(`/products/${id}/-1`);
+  }
+
   
   return (
     <div className="mb-7">
       <Slider {...settings}>
       {data?.map((category)=>{
-          console.log(category);
+          // console.log(category);
           
           return <div key={category._id}>
-          <img src={category.image} className="lg:h-[280px] lg:w-[280px] h-[100px] w-[100%] object-cover" alt="" />
+          <img src={category.image} className="lg:h-[280px] lg:w-[280px] h-[100px] w-[100%] object-cover cursor-pointer" alt="category image" onClick={()=>{handleClick(category._id)}}/>
           <h2 className="text-center md:text-xl mt-2 font-[500]">{category.slug}</h2>
         </div>
         }

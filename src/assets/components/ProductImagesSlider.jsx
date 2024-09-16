@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 // import { baseUrl } from "./config";
 
-function CustomPaging({ images }) {
+function ProductImagesSlider({ images }) {
   const settings = {
     customPaging: function(i) {
       return (
@@ -32,4 +32,4 @@ function CustomPaging({ images }) {
   );
 }
 
-export default CustomPaging;
+export default ProductImagesSlider;

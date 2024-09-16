@@ -20,11 +20,29 @@ import WishList from './assets/components/WishList'
 import ProductDetails from './assets/components/ProductDetails';
 import Orders from './assets/components/Orders';
 import ProtectedRoute from './assets/components/ProtectedRoute';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { useDispatch, useSelector } from 'react-redux';
+import { setTheme } from './assets/lib/slices/themeSlice';
 
 
 
 
 function App() {
+
+  let dispatch = useDispatch();
+  
+  if (!localStorage.getItem('freshCartTheme')){
+    localStorage.setItem('freshCartTheme', 'light');
+  }
+  
+  dispatch(setTheme(localStorage.getItem('freshCartTheme')));
+  let {theme} = useSelector((data)=>data.theme)
+
+  if (theme === 'dark')
+    document.documentElement.classList.add('dark');
+  else
+    document.documentElement.classList.remove('dark');
 
   let routes = createBrowserRouter([
     {path: '/', element: <Layout></Layout>, children:[
@@ -47,11 +65,20 @@ function App() {
     ]}
   ])
 
+  
+  const darkTheme = createTheme({
+    palette: {
+      mode: theme,
+    },
+  });
+
+
 
   return (
-    <>
+    <ThemeProvider theme={darkTheme}>
+    <CssBaseline />
     <RouterProvider router={routes}></RouterProvider>
-    </>
+    </ThemeProvider>
   )
 }
 

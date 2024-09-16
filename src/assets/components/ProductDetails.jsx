@@ -23,11 +23,10 @@ export default function ProductDetails() {
 
     let { data: products, isLoading: productsLoading, error: productsError, isError: productsIsError} = useQuery({
         queryKey: ['products',data?.data?.data?.category?._id],
-        queryFn: () => getProductsApi({ category: data?.data?.data?.category?._id || -1}),
-        gcTime: 0
+        queryFn: () => getProductsApi({ category: data?.data?.data?.category?._id ? [data?.data?.data?.category?._id] : -1, keyWord: ''})
     });
 
-    console.log(products?.data?.data);
+    console.log(products);
     
 
     let { mutate: addToCart , isPending: cartPending} = useMutation({
@@ -104,18 +103,18 @@ export default function ProductDetails() {
             <div className='py-10'>
             <div className='flex flex-wrap'>
                 <div className='md:w-1/2 xl:w-1/4 md:mb-0 w-full mb-12'>
-                <Skeleton variant="rectangular" animation="wave" className='w-full mb-2' height={350}/>
+                <Skeleton variant="rectangular" animation="wave" className='w-full mb-2 dark:bg-[#27272793]' height={350}/>
                 <div className='flex w-full justify-center items-center gap-3'>
-                    <Skeleton variant="rectangular" animation="wave" width={40} height={50}/>
-                    <Skeleton variant="rectangular" animation="wave" width={40} height={50}/>
-                    <Skeleton variant="rectangular" animation="wave" width={40} height={50}/>
+                    <Skeleton variant="rectangular" animation="wave" width={40} height={50} className='dark:bg-[#27272793]'/>
+                    <Skeleton variant="rectangular" animation="wave" width={40} height={50} className='dark:bg-[#27272793]'/>
+                    <Skeleton variant="rectangular" animation="wave" width={40} height={50} className='dark:bg-[#27272793]'/>
                 </div>
                 </div>
                 <div className='md:w-1/2 xl:w-3/4 w-full flex flex-col justify-center md:px-5'>
-                <Skeleton variant="rounded" animation="wave" className='w-full mb-2' height={50}/>
-                <Skeleton variant="text" animation="wave" className='w-full mb-2'/>
-                <Skeleton variant="text" animation="wave" className='w-full mb-2'/>
-                <Skeleton variant="rounded" animation="wave" className='w-full md:w-3/4 block mx-auto mt-3' height={40}/>
+                <Skeleton variant="rounded" animation="wave" className='w-full mb-2 dark:bg-[#27272793]' height={50}/>
+                <Skeleton variant="text" animation="wave" className='w-full mb-2 dark:bg-[#27272793]'/>
+                <Skeleton variant="text" animation="wave" className='w-full mb-2 dark:bg-[#27272793]'/>
+                <Skeleton variant="rounded" animation="wave" className='w-full md:w-3/4 block mx-auto mt-3 dark:bg-[#27272793]' height={40}/>
                 </div>
             </div>
         </div>
@@ -236,7 +235,7 @@ function ProductItem({product, favProducts}) {
     })
   
     let {mutate: unFavProd, data: unFavProdData, isPending: unFavProdPending, isSuccess: unFavProdSuccess} = useMutation({
-      mutationKey: ['addProductToWishlist'],
+      mutationKey: ['removeProductToWishlist'],
       mutationFn: removeProdFromWishlistApi,
       onError: ()=>{
         fav.current = true;
@@ -287,30 +286,45 @@ function ProductItem({product, favProducts}) {
         
             <div className='w-full'>
               <div className='relative overflow-hidden'>
-                <img src={product.imageCover} alt="product image cover" className='product-image w-full object-cover h-full'/>
+                <img src={product.imageCover} alt="product image cover" className='product-image w-full object-cover h-full scale-110'/>
                 {fav.current?<i className={`fa-solid text-red-700 fa-heart absolute top-[20px] left-[20px] text-xl z-[11]`} onClick={handleFavProd}></i>:''}
                 <div className='product-overlay absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 z-10'>
-                  <div className='absolute left-1/2 translate-x-[-50%] translate-y-[-50%] product-overlay-btns'>
-                      <div onClick={handleClick} className='relative bg-white text-black w-[150px] h-[40px] mb-2 rounded-[50vh] overflow-hidden product-overlay-button'>
-                          <div className='w-full h-full'>
-                              <p className='w-full h-full text-center'>View</p>
-                              <i className="fa-regular fa-eye text-center w-full h-full text-white"></i>
-                          </div>
-                      </div>
-                      <div onClick={()=>{mutate(product._id)}} className='relative bg-white text-black w-[150px] h-[40px] mb-2 rounded-[50vh] overflow-hidden product-overlay-button'>
-                          <div className='w-full h-full'>
-                              <p className='w-full h-full text-center'>Add to cart</p>
-                              <i className="fa-solid fa-cart-shopping text-center w-full h-full text-white"></i>
-                          </div>
+                {
+                  isPending?<div className='absolute left-1/2 translate-x-[-50%] translate-y-[-50%] product-overlay-btns'>
+                  <div onClick={handleClick} className='relative bg-white text-black w-[150px] h-[40px] mb-2 rounded-[50vh] overflow-hidden product-overlay-button'>
+                      <div className='w-full h-full'>
+                          <p className='w-full h-full text-center'>View</p>
+                          <i className="fa-regular fa-eye text-center w-full h-full text-white"></i>
                       </div>
                   </div>
+                  <div onClick={()=>{mutate(product._id)}} className='relative bg-black w-[150px] h-[40px] mb-2 rounded-[50vh] overflow-hidden'>
+                      <div className='w-full h-full flex justify-center items-center'>
+                          <i className="fa-solid fa-circle-notch fa-spin text-center text-white"></i>
+                      </div>
+                  </div>
+              </div>
+                  :<div className='absolute left-1/2 translate-x-[-50%] translate-y-[-50%] product-overlay-btns'>
+                  <div onClick={handleClick} className='relative bg-white text-black w-[150px] h-[40px] mb-2 rounded-[50vh] overflow-hidden product-overlay-button'>
+                      <div className='w-full h-full'>
+                          <p className='w-full h-full text-center'>View</p>
+                          <i className="fa-regular fa-eye text-center w-full h-full text-white"></i>
+                      </div>
+                  </div>
+                  <div onClick={()=>{mutate(product._id)}} className='relative bg-white text-black w-[150px] h-[40px] mb-2 rounded-[50vh] overflow-hidden product-overlay-button'>
+                      <div className='w-full h-full'>
+                          <p className='w-full h-full text-center'>Add to cart</p>
+                          <i className="fa-solid fa-cart-shopping text-center w-full h-full text-white"></i>
+                      </div>
+                  </div>
+              </div>
+                }
                   <i className={`${!fav.current?'fa-regular text-white':'fa-solid text-red-700 hidden'} fav-icon fa-heart absolute top-[20px]  text-xl`} onClick={handleFavProd}></i>
                 </div>
               </div>
-              <h3 className='text-gray-500 mb-3'>{product.category?.name}</h3>
+              <h3 className='text-gray-500 dark:text-gray-400 mb-3'>{product.category?.name}</h3>
               <h3 className='font-bold'>{product.title}</h3>
               <div className='flex justify-between'>
-                <p className="price text-gray-600">{`${product.price}EGP`}</p>
+                <p className="price text-gray-600 dark:text-gray-400">{`${product.price}EGP`}</p>
                 <div className='flex justify-center items-center'>
                   <i className='fa fa-star rating-color mr-1'></i>
                   <p>{product.ratingsAverage}</p>

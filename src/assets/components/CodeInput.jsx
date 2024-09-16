@@ -81,14 +81,14 @@ export default function CodeInput() {
           onChange={(e) => handleChange(e, index)}
           onKeyDown={(e) => handleKeyDown(e, index)}
           maxLength={1}
-          className='code-input-tw'
+          className='code-input-tw dark:text-black'
           id={`CodeInput${index}`}
           name={`CodeInput${index}`}
         />
       ))}
       </div>
 
-    <button type='submit' className='authBtn rounded w-[fit-content] px-5 py-2 text-xl mt-5'><i className="fa-solid fa-arrow-right"></i></button>
+    <button type='submit' className='authBtn rounded w-[fit-content] px-5 py-2 text-xl mt-5 dark:text-white dark:border-white dark:hover:border-gray-400 dark:transition-none dark:hover:text-gray-400 dark:hover:bg-transparent'><i className="fa-solid fa-arrow-right"></i></button>
     </form>
   );
 }

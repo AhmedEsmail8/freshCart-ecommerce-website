@@ -45,14 +45,14 @@ function Row({order}) {
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              <Typography variant="h4" gutterBottom component="div" sx={{fontWeight:'bold'}}>
+              {/* <Typography variant="h4" gutterBottom component="div" sx={{fontWeight:'bold'}}>
                 Order Details
-              </Typography>
-              <Table size="small" aria-label="purchases">
+              </Typography> */}
+              <Table size="small" aria-label="purchases" className='mt-5'>
                 <TableHead>
                   <TableRow>
-                    <TableCell sx={{fontWeight:'bold'}}>Product image</TableCell>
-                    <TableCell sx={{fontWeight:'bold'}}>Customer</TableCell>
+                    <TableCell sx={{fontWeight:'bold'}}>image</TableCell>
+                    <TableCell sx={{fontWeight:'bold'}}>Product</TableCell>
                     <TableCell sx={{fontWeight:'bold'}}>Amount</TableCell>
                   </TableRow>
                 </TableHead>
@@ -66,12 +66,32 @@ function Row({order}) {
                   ))}
                 </TableBody>
               </Table>
-              <div className='py-5 flex flex-col gap-3'>
-                <p className='text-xl'><span className='font-bold'>Phone:</span> {order.shippingAddress.phone}</p>
+              <div className='py-5 flex flex-wrap gap-y-3'>
+                <div className='flex items-center xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full'>
+                  <p className='text-gray-500 dark:text-gray-400'>phone</p>
+                  <p className='font-semibold dark:font-normal ml-5'>{order.shippingAddress.phone}</p>
+                </div>
+                <div className='flex items-center xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full'>
+                  <p className='text-gray-500 dark:text-gray-400'>Address</p>
+                  <p className='font-semibold dark:font-normal ml-5'>{order.shippingAddress.details}</p>
+                </div>
+                <div className='flex items-center xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full'>
+                  <p className='text-gray-500 dark:text-gray-400'>Ordered at</p>
+                  <p className='font-semibold dark:font-normal ml-5'>{new Date(order.createdAt).toISOString().split('T')[0]}</p>
+                </div>
+                <div className='flex items-center xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full'>
+                  <p className='text-gray-500 dark:text-gray-400'>Shipping price</p>
+                  <p className='font-semibold dark:font-normal ml-5'>{order.shippingPrice} EGP</p>
+                </div>
+                <div className='flex items-center xl:w-1/5 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full'>
+                  <p className='text-gray-500 dark:text-gray-400'>Paid</p>
+                  <p className='font-semibold dark:font-normal ml-5 uppercase'>{order.isPaid?<span>yes</span>:<span>no</span>}</p>
+                </div>
+                {/* <p className='text-xl'><span className='font-bold'>Phone:</span> {order.shippingAddress.phone}</p>
                 <p className='text-xl'><span className='font-bold'>Address:</span> {order.shippingAddress.details}</p>
                 <p className='text-xl'><span className='font-bold'>Ordered at:</span> {new Date(order.createdAt).toISOString().split('T')[0]}</p>
                 <p className='text-xl'><span className='font-bold'>Shipping price:</span> {order.shippingPrice} EGP</p>
-                <p className='text-xl'><span className='font-bold'>Paid:</span> {order.isPaid?<span className='text-green-500 font-bold uppercase'>yes</span>:<span className='text-red-500 font-bold uppercase'>no</span>}</p>
+                <p className='text-xl'><span className='font-bold'>Paid:</span> {order.isPaid?<span className='text-green-500 font-bold uppercase'>yes</span>:<span className='text-red-500 font-bold uppercase'>no</span>}</p> */}
               </div>
             </Box>
           </Collapse>

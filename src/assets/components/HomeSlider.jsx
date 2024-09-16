@@ -36,7 +36,7 @@ export default function HomeSlider() {
       <div className="relative">
         <img src={img1} className="object-cover sm:h-[450px] h-[200px] w-full" alt="" />
         <motion.div initial={{ opacity: 0, scale: 0 }} animate={activeSlide==0?{ opacity: 1, scale: 1 }: { opacity: 0, scale: 0 }} className="lg:block hidden absolute top-[30%] left-6 w-[300px]">
-          <h2 className="font-extrabold text-2xl mb-1">Fresh Picks, Just for You!</h2>
+          <h2 className="font-extrabold text-2xl mb-1 dark:text-black">Fresh Picks, Just for You!</h2>
           <p className="mb-6 text-gray-500">Discover the finest selection of groceries, handpicked for quality and freshness. Don't miss out on our exclusive offers!</p>
           <button className="bg-black text-white px-3 py-1">Explore Now</button>
         </motion.div>
@@ -44,7 +44,7 @@ export default function HomeSlider() {
       <div className="relative">
         <img src={img3} className="object-cover sm:h-[450px] h-[200px] w-full" alt="" />
         <motion.div initial={{ opacity: 0, scale: 0 }} animate={activeSlide==1?{ opacity: 1, scale: 1 }: { opacity: 0, scale: 0 }} className="lg:block hidden absolute top-[30%] left-6 w-[300px]">
-          <h2 className="font-extrabold text-2xl mb-1">Your Daily Essentials, Delivered!</h2>
+          <h2 className="font-extrabold text-2xl mb-1 dark:text-black">Your Daily Essentials, Delivered!</h2>
           <p className="mb-6 text-gray-500">Stock up on the groceries you love with ease. Freshness guaranteed, right to your doorstep.</p>
           <button className="bg-black text-white px-3 py-1">Explore Now</button>
         </motion.div>

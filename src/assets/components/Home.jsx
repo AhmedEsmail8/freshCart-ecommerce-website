@@ -38,7 +38,7 @@ export default function Home() {
       </div>
       <CategoriesSlider data={data?.data?.data}></CategoriesSlider>
       <div className="home-title mt-16 text-center">
-        <h1 className='text-4xl font-bold  uppercase'>products</h1>
+        <h1 className='text-3xl font-bold  uppercase tracking-widest'>products</h1>
       </div>
       <Products></Products>
     </div>

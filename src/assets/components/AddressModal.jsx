@@ -59,6 +59,8 @@ export default function AddressModal({ modal, setModal , cartId}) {
             phone: "",
             city: "",
         },
+        validateOnChange:false,
+        validateOnBlur:false,
         validationSchema,
         onSubmit:handleSubmit
     });
@@ -68,7 +70,7 @@ export default function AddressModal({ modal, setModal , cartId}) {
             className={`fixed top-0 left-0 bottom-0 right-0 flex justify-center items-center z-[9999] bg-black bg-opacity-55 ${modal ? "" : "hidden"
                 }`}
         >
-            <div className="modal rounded w-[95%] md:w-[600px] bg-white p-5">
+            <div className="modal rounded w-[95%] md:w-[600px] bg-white dark:bg-[#1b1b1b] p-5">
                 <form onSubmit={formik.handleSubmit}>
                     <h3 className="font-bold mb-5 text-xl">Address Details</h3>
                     <div className="relative z-0 w-full mb-5 group">
@@ -76,7 +78,7 @@ export default function AddressModal({ modal, setModal , cartId}) {
                             type="text"
                             name="details"
                             id="details"
-                            className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-black peer`}
+                            className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-400 focus:outline-none focus:ring-0 focus:border-black peer`}
                             placeholder=" "
                             value={formik.values.details}
                             onChange={formik.handleChange}
@@ -84,18 +86,18 @@ export default function AddressModal({ modal, setModal , cartId}) {
                         />
                         <label
                             htmlFor="details"
-                            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-black peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-black peer-focus:dark:text-gray-300 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                         >
                             details
                         </label>
                     </div>
-                    {formik.errors.details && formik.touched.details ? <Alert severity="error">{formik.errors.details}</Alert>:''}
+                    {formik.errors.details && formik.touched.details ? <div className="mb-3"><Alert severity="error">{formik.errors.details}</Alert></div>:''}
                     <div className="relative z-0 w-full mb-5 group">
                         <input
                             type="tel"
                             name="phone"
                             id="phone"
-                            className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-black peer`}
+                            className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-400 focus:outline-none focus:ring-0 focus:border-black peer`}
                             placeholder=" "
                             value={formik.values.phone}
                             onChange={formik.handleChange}
@@ -103,18 +105,18 @@ export default function AddressModal({ modal, setModal , cartId}) {
                         />
                         <label
                             htmlFor="phone"
-                            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-black peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-black peer-focus:dark:text-gray-300 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                         >
                             phone
                         </label>
                     </div>
-                    {formik.errors.phone && formik.touched.phone ? <Alert severity="error">{formik.errors.phone}</Alert>:''}
+                    {formik.errors.phone && formik.touched.phone ? <div className="mb-3"><Alert severity="error">{formik.errors.phone}</Alert></div>:''}
                     <div className="relative z-0 w-full mb-5 group">
                         <input
                             type="text"
                             name="city"
                             id="city"
-                            className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-black peer`}
+                            className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 dark:focus:border-gray-400 border-gray-300 appearance-none dark:text-white dark:border-gray-600 focus:outline-none focus:ring-0 focus:border-black peer`}
                             placeholder=" "
                             value={formik.values.city}
                             onChange={formik.handleChange}
@@ -122,12 +124,12 @@ export default function AddressModal({ modal, setModal , cartId}) {
                         />
                         <label
                             htmlFor="city"
-                            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-black peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-black peer-focus:dark:text-gray-300 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                         >
                             city
                         </label>
                     </div>
-                    {formik.errors.city && formik.touched.city ? <Alert severity="error">{formik.errors.city}</Alert>:''}
+                    {formik.errors.city && formik.touched.city ? <div className="mb-3"><Alert severity="error">{formik.errors.city}</Alert></div>:''}
 
                     <h3 className="font-semibold">Payment method</h3>
                     <div className="flex gap-3 mt-2">
@@ -136,15 +138,16 @@ export default function AddressModal({ modal, setModal , cartId}) {
                             <label htmlFor="card">Card</label>
                         </div>
                         <div className="flex gap-1 items-center">
-                            <input onChange={handlePaymentChange} value={'cash'} type="radio" id="cash" name="paymentMethod" className="cursor-pointer text-black focus:ring-0"></input>
+                            <input onChange={handlePaymentChange} checked={true} value={'cash'} type="radio" id="cash" name="paymentMethod" className="cursor-pointer text-black focus:ring-0"></input>
                             <label htmlFor="cash">Cash</label>
                         </div>
                     </div>
 
                     <div className="flex justify-end gap-3 items-center mt-5">
                         <button
-                            onClick={() => setModal(false)}
+                            onClick={() => {setModal(false); formik.resetForm();}}
                             className="bg-red-700 text-white px-4 py-1 rounded"
+                            type="submit"
                         >
                             cancel
                         </button>

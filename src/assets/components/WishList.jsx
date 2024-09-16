@@ -10,7 +10,7 @@ export default function WishList() {
   let { data: wishlistProducts, isLoading: productsLoading, isError: productsIsError, error: productsError, refetch } = useQuery({
     queryKey: ['getWishlistProducts'],
     queryFn: getWishlistProductsApi,
-    gcTime: 0
+    refetchInterval: 1000
   })
 
   if (productsLoading){

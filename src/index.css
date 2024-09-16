@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,7 +8,12 @@
   --light-color: #f0f3f2;
   --shadow: rgba(145, 158, 171, .2) 0px 2px 4px -1px, rgba(145, 158, 171, .14) 0px 4px 5px 0px, rgba(145, 158, 171, .12) 0px 1px 10px 0px;
   /* --font-family: 'Encode Sans Expanded', sans-serif; */
+  --font-family: "Lato", sans-serif;
   --rating-color: #ffc908;
+}
+
+html.dark{
+  @apply bg-[#121212];
 }
 
 body {
@@ -62,21 +67,29 @@ a:hover {
   @apply mx-auto sm:px-4 px-2 2xl:px-20 lg:px-14
 }
 
-.bg-custom-gray {
+html:not(.dark) .bg-custom-gray {
   background-color: rgba(248, 249, 250) !important;
 }
 
 .nav-link{
-  @apply relative text-gray-600 font-[500];
+  @apply relative text-gray-600 font-[500] dark:text-gray-300;
 }
 
-.nav-link:hover{
+html:not(.dark) .nav-link:hover{
   color: #000;
 }
 
-.nav-link.active{
+html:not(.dark) .nav-link.active{
   color: #000;
   font-weight: bold;
+}
+
+html.dark .nav-link:hover{
+  @apply text-gray-400
+}
+
+html.dark .nav-link.active{
+  @apply text-white font-bold
 }
 
 .authBtn {
@@ -100,10 +113,10 @@ a:hover {
 }
 
 .code-input-tw {
-  @apply bg-gray-200 border-0 focus:ring-0 sm:w-[50px] w-[40px] text-center rounded font-[600] text-xl
+  @apply bg-gray-200 border-0 focus:ring-0 sm:w-[50px] w-[40px] text-center rounded font-[600] text-xl dark:bg-gray-300
 }
 
-button.swal2-confirm {
+button.swal2-styled.swal2-confirm {
   @apply bg-black hover:bg-[#2f2f2f] focus:shadow-none
 }
 
@@ -233,6 +246,10 @@ button.swal2-confirm {
   opacity: 1;
 }
 
+/* html.dark .MuiPagination-ul{
+  @apply text-white
+} */
+
 
 .slick-thumb {
   display: flex;
@@ -285,4 +302,62 @@ select:focus {
 
 .home-images img{
   object-position: right;
+}
+
+.filter-title{
+  @apply relative pb-1 mb-2
+}
+
+.filter-title::after{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 2px;
+}
+
+.filter-title::after{
+  background-color: #000;
+}
+
+html.dark .filter-title::after{
+  background-color: #fff;
+}
+
+
+.filter-section::-webkit-scrollbar {
+  width: 4px;
+}
+
+html:not(.dark) .filter-section::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+html:not(.dark) .filter-section::-webkit-scrollbar-thumb {
+  background-color: #cbcbcb;
+}
+
+html:not(.dark) .filter-section::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+html.dark .filter-section::-webkit-scrollbar-track {
+  background: #939393;
+}
+
+html.dark .filter-section::-webkit-scrollbar-thumb {
+  background-color: #cbcbcb;
+}
+
+html.dark .filter-section::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+html:not(.dark) .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #000 !important;
+}
+
+html.dark .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #fff !important;
 }
