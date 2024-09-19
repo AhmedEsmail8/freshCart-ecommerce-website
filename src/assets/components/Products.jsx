@@ -24,8 +24,6 @@ export default function Products() {
 
   useEffect(()=>{
     return ()=>{
-      console.log('DEAD!!!!');
-      
       dispatch(resetFilter());
     }
   }, []);
@@ -98,27 +96,6 @@ export default function Products() {
   if (data?.data?.data?.length === 0) {
     return (
       <>
-        <div className='flex'>
-      <ProductsFilter setFilterClicked={setFilterClicked} setPage={setPage}></ProductsFilter>
-      {/* <TextField
-              type="text"
-              id="keyWord"
-              name="keyWord"
-              size='small'
-              sx={{'input':{'padding': '10px'}}}
-              slotProps={{
-                input: {
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <i className='fa-solid fa-magnifying-glass'></i>
-                    </InputAdornment>
-                  )
-                },
-                
-              }}
-              onChange={(e)=>{setKeyWord(e.target.value);}}
-            /> */}
-      </div>
         <div className='w-fit flex items-center cursor-pointer my-3' onClick={() => { dispatch(toggleFilterOpen()) }}>
           <i className="fa-solid fa-filter"></i>
           <p className='text-gray-600'>Filter</p>
@@ -132,9 +109,10 @@ export default function Products() {
 
 
   return (
-    <>
+    <div className='py-10'>
       <div className='flex'>
-      <ProductsFilter setFilterClicked={setFilterClicked} setPage={setPage}></ProductsFilter>
+        {(params.category && params.category != -1) || (params.brand && params.brand != -1) ? '' : <ProductsFilter setFilterClicked={setFilterClicked} setPage={setPage}></ProductsFilter>}
+      
       {/* <TextField
               type="text"
               id="keyWord"
@@ -154,10 +132,13 @@ export default function Products() {
               onChange={(e)=>{setKeyWord(e.target.value);}}
             /> */}
       </div>
-      <div className='w-fit flex items-center cursor-pointer my-3' onClick={() => { dispatch(toggleFilterOpen()) }}>
+      {(params.category && params.category != -1) || (params.brand && params.brand != -1) ? '' : (
+        <div className='w-fit flex items-center cursor-pointer my-3' onClick={() => { dispatch(toggleFilterOpen()) }}>
         <i className="fa-solid fa-filter"></i>
         <p className='text-gray-600'>Filter</p>
       </div>
+      )}
+      
       <div className='flex flex-wrap'>
         {data?.data?.data?.map((product) => (
           <Product key={product._id} product={product} favProducts={wishlistProducts?.data?.data} refetchFav={refetchFav} />
@@ -167,6 +148,6 @@ export default function Products() {
         <Pagination count={data?.data?.metadata?.numberOfPages}
           page={page} onChange={handleChange} />
       </div>
-    </>
+    </div>
   )
 }

@@ -153,8 +153,9 @@ export default function Login() {
           </div> */}
 
 
+          <Link to={'/forgetpassword'} className='mt-2 text-right text-gray-500 block hover:text-black dark:hover:text-gray-300 font-[500] transition-colors'>Forget your password?</Link>
           <button type='submit' className='bg-black text-white w-full py-2 rounded mt-3'>login</button>
-          <Link to={'/forgetpassword'} className='mt-2 text-gray-500 block hover:text-black dark:hover:text-gray-300 font-[500] transition-colors w-fit'>Forget your password?</Link>
+          <p className='text-center mt-3 text-gray-500 sm:hidden block'>Don't have an account? <span><Link to={'/register'} className='text-black dark:text-white'>Sign Up</Link></span></p>
 
         </form>
       </div>

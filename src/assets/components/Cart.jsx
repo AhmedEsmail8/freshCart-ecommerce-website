@@ -32,7 +32,7 @@ export default function Cart() {
 
   if (data?.data?.data?.products?.length == 0){
     return (
-      <div className='absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] w-full flex justify-center items-center'>
+      <div className='w-full flex justify-center items-center'>
       <img src={cartEmpty} alt="empty cart image" className='md:w-[400px] w-[250px]'/>
     </div>
     );

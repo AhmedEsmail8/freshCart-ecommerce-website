@@ -274,6 +274,7 @@ export default function Register() {
           {formik.touched.phone && formik.errors.phone ? <div className='mt-2'><Alert severity="error">{formik.errors.phone}</Alert></div> : ''}
 
           <button type='submit' className='bg-black text-white w-full py-2 rounded mt-3'>Register</button>
+          <p className='text-center mt-3 text-gray-500 sm:hidden block'>Already have an account? <span><Link to={'/register'} className='text-black dark:text-white'>Login here</Link></span></p>
         </form>
       </div>
     </div>

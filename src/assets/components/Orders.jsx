@@ -15,6 +15,8 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { useQuery } from '@tanstack/react-query'
 import {getOrdersApi} from '../API/orders'
 import Loader from './Loader'
+import noOrders from '../images/noOrders.png'
+import { Link } from 'react-router-dom';
 
 function Row({order}) {
   console.log(order);
@@ -109,10 +111,20 @@ export default function Orders() {
     queryFn: getOrdersApi
   })
 
-  console.log(data);
+  console.log(data?.data?.length);
   
   if (isLoading)
     return <Loader></Loader>
+
+  if (data?.data?.length == 0){
+    return (
+      <div className='flex flex-col items-center justify-center'>
+        <i className='fa-solid fa-box-open text-9xl'></i>
+        <h1 className='text-3xl font-bold'>You have no orders.</h1>
+        <button className='dark:bg-white bg-black font-semibold px-3 py-1 mt-4'><Link to={'/products'} className='text-white dark:text-black'>Start Shopping</Link></button>
+    </div>
+    );
+  }
     
   return (
     <div className='py-10'>
