@@ -22,8 +22,8 @@ export default function Products() {
   let [filterClicked, setFilterClicked] = useState(false);
 
 
-  useEffect(()=>{
-    return ()=>{
+  useEffect(() => {
+    return () => {
       dispatch(resetFilter());
     }
   }, []);
@@ -39,7 +39,7 @@ export default function Products() {
 
   let { data, isLoading, error, isError, refetch } = useQuery({
     queryKey: ['products', page, filter.brands, filter.price[0], filter.price[1], filter.categories, params.category, params.brand, keyWord],
-    queryFn: () => getProductsApi({category: getCategories(), brand: getBrands(), page: (filterClicked? '': page), price: filter.price, keyWord }),
+    queryFn: () => getProductsApi({ category: getCategories(), brand: getBrands(), page: (filterClicked ? '' : page), price: filter.price, keyWord }),
     gcTime: 0,
     cacheTime: 0
   });
@@ -54,7 +54,7 @@ export default function Products() {
   }
 
   function getBrands() {
-    if (params.brand && params.brand != -1){
+    if (params.brand && params.brand != -1) {
       return [params.brand];
     }
     if (filter.brands.length > 0)
@@ -95,15 +95,20 @@ export default function Products() {
 
   if (data?.data?.data?.length === 0) {
     return (
-      <>
-        <div className='w-fit flex items-center cursor-pointer my-3' onClick={() => { dispatch(toggleFilterOpen()) }}>
-          <i className="fa-solid fa-filter"></i>
-          <p className='text-gray-600'>Filter</p>
+      <div>
+        <div className='flex'>
+          {(params.category && params.category != -1) || (params.brand && params.brand != -1) ? '' : <ProductsFilter setFilterClicked={setFilterClicked} setPage={setPage}></ProductsFilter>}
         </div>
+        {(params.category && params.category != -1) || (params.brand && params.brand != -1) ? '' : (
+          <div className='w-fit flex items-center cursor-pointer my-3' onClick={() => { dispatch(toggleFilterOpen()) }}>
+            <i className="fa-solid fa-filter"></i>
+            <p className='text-gray-600'>Filter</p>
+          </div>
+        )}
         <div className='py-16 w-full flex justify-center items-center'>
           <img src={noProductsFound} alt="no products found image" className='md:w-[200px] w-[150px]' />
         </div>
-      </>
+      </div>
     );
   }
 
@@ -112,8 +117,8 @@ export default function Products() {
     <div className='py-10'>
       <div className='flex'>
         {(params.category && params.category != -1) || (params.brand && params.brand != -1) ? '' : <ProductsFilter setFilterClicked={setFilterClicked} setPage={setPage}></ProductsFilter>}
-      
-      {/* <TextField
+
+        {/* <TextField
               type="text"
               id="keyWord"
               name="keyWord"
@@ -134,11 +139,11 @@ export default function Products() {
       </div>
       {(params.category && params.category != -1) || (params.brand && params.brand != -1) ? '' : (
         <div className='w-fit flex items-center cursor-pointer my-3' onClick={() => { dispatch(toggleFilterOpen()) }}>
-        <i className="fa-solid fa-filter"></i>
-        <p className='text-gray-600'>Filter</p>
-      </div>
+          <i className="fa-solid fa-filter"></i>
+          <p className='text-gray-600'>Filter</p>
+        </div>
       )}
-      
+
       <div className='flex flex-wrap'>
         {data?.data?.data?.map((product) => (
           <Product key={product._id} product={product} favProducts={wishlistProducts?.data?.data} refetchFav={refetchFav} />
