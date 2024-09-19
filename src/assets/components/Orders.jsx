@@ -118,7 +118,7 @@ export default function Orders() {
 
   if (data?.data?.length == 0){
     return (
-      <div className='flex flex-col items-center justify-center'>
+      <div className='flex flex-col items-center justify-center md:py-0 py-16'>
         <i className='fa-solid fa-box-open text-9xl'></i>
         <h1 className='text-3xl font-bold'>You have no orders.</h1>
         <button className='dark:bg-white bg-black font-semibold px-3 py-1 mt-4'><Link to={'/products'} className='text-white dark:text-black'>Start Shopping</Link></button>
