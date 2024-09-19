@@ -24,9 +24,9 @@ export default function Register() {
       localStorage.setItem('freshCartToken', data.data.token);
       dispatch(signin());
     },
-    onError: (data)=>{
+    onError: (data) => {
       console.log(data);
-      if (data.response.status == 409){
+      if (data.response.status == 409) {
         Swal.fire({
           title: "Error!",
           text: "Account already exist.",
@@ -88,17 +88,6 @@ export default function Register() {
         <h1 className='text-3xl font-[600] mb-2 text-center'>Sign Up</h1>
 
         <form className='mt-4 md:w-[600px] w-[95%]' onSubmit={formik.handleSubmit} noValidate>
-          {/* <div className='flex flex-col w-full'>
-            <label htmlFor="name">Name:</label>
-            <input 
-              onChange={formik.handleChange} 
-              onBlur={formik.handleBlur} 
-              value={formik.values.name}
-              type="text" 
-              id='name' 
-              name='name' 
-              className='rounded w-[95vw] sm:w-[600px] dark:text-black border-gray-300 border-2 focus:border-[#000] focus:ring-0'/>
-          </div> */}
           <div className='flex flex-col w-full'>
             <label htmlFor="name">Name:</label>
             <TextField
@@ -124,17 +113,6 @@ export default function Register() {
 
           {formik.touched.name && formik.errors.name ? <div className='mt-2'><Alert severity="error">{formik.errors.name}</Alert></div> : ''}
 
-          {/* <div className='flex flex-col w-full mt-2'>
-            <label htmlFor="email">Email:</label>
-            <input onChange={formik.handleChange} 
-              onBlur={formik.handleBlur} 
-              value={formik.values.email} 
-              type="email" 
-              id='email' 
-              name='email' 
-              className='rounded w-[95vw] sm:w-[600px] dark:text-black border-gray-300 border-2 focus:border-[#000] focus:ring-0'/>
-          </div> */}
-
           <div className='flex flex-col w-full mt-2'>
             <label htmlFor="email">Email:</label>
             <TextField
@@ -159,17 +137,6 @@ export default function Register() {
           </div>
 
           {formik.touched.email && formik.errors.email ? <div className='mt-2'><Alert severity="error">{formik.errors.email}</Alert></div> : ''}
-
-          {/* <div className='flex flex-col w-full mt-2'>
-            <label htmlFor="password">Password:</label>
-            <input onChange={formik.handleChange} 
-              onBlur={formik.handleBlur} 
-              value={formik.values.password}
-              type="password" 
-              id='password' 
-              name='password' 
-              className='rounded w-[95vw] sm:w-[600px] dark:text-black border-gray-300 border-2 focus:border-[#000] focus:ring-0'/>
-          </div> */}
 
           <div className='flex flex-col w-full mt-2'>
             <label htmlFor="password">Password:</label>
@@ -201,17 +168,6 @@ export default function Register() {
 
           {formik.touched.password && formik.errors.password ? <div className='mt-2'><Alert severity="error">{formik.errors.password}</Alert></div> : ''}
 
-          {/* <div className='flex flex-col w-full mt-2'>
-            <label htmlFor="rePassword">Repassword:</label>
-            <input onChange={formik.handleChange} 
-              onBlur={formik.handleBlur} 
-              value={formik.values.rePassword} 
-              type="password" 
-              id='rePassword' 
-              name='rePassword' 
-              className='rounded w-[95vw] sm:w-[600px] dark:text-black border-gray-300 border-2 focus:border-[#000] focus:ring-0'/>
-          </div> */}
-
           <div className='flex flex-col w-full mt-2'>
             <label htmlFor="rePassword">Confirm password:</label>
             <TextField
@@ -236,17 +192,6 @@ export default function Register() {
           </div>
 
           {formik.touched.rePassword && formik.errors.rePassword ? <div className='mt-2'><Alert severity="error">{formik.errors.rePassword}</Alert></div> : ''}
-
-          {/* <div className='flex flex-col w-full mt-2'>
-            <label htmlFor="phone">Phone:</label>
-            <input onChange={formik.handleChange} 
-              onBlur={formik.handleBlur} 
-              value={formik.values.phone} 
-              type="tel" 
-              id='phone' 
-              name='phone' 
-              className='rounded w-[95vw] sm:w-[600px] dark:text-black border-gray-300 border-2 focus:border-[#000] focus:ring-0'/>
-          </div> */}
 
           <div className='flex flex-col w-full mt-2'>
             <label htmlFor="phone">Phone:</label>
@@ -274,7 +219,7 @@ export default function Register() {
           {formik.touched.phone && formik.errors.phone ? <div className='mt-2'><Alert severity="error">{formik.errors.phone}</Alert></div> : ''}
 
           <button type='submit' className='bg-black text-white w-full py-2 rounded mt-3'>Register</button>
-          <p className='text-center mt-3 text-gray-500 sm:hidden block'>Already have an account? <span><Link to={'/register'} className='text-black dark:text-white'>Login here</Link></span></p>
+          <p className='text-center mt-3 text-gray-500 sm:hidden block'>Already have an account? <span><Link to={'/login'} className='text-black dark:text-white'>Login here</Link></span></p>
         </form>
       </div>
     </div>

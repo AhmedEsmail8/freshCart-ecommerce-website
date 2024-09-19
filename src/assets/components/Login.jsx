@@ -102,7 +102,7 @@ export default function Login() {
               id="email"
               name="email"
               size='small'
-              sx={{'input':{'padding': '10px'}}}
+              sx={{ 'input': { 'padding': '10px' } }}
               slotProps={{
                 input: {
                   startAdornment: (
@@ -115,11 +115,6 @@ export default function Login() {
             />
           </div>
 
-          {/* <div className='flex flex-col w-full'>
-            <label htmlFor="email">Email:</label>
-            <input ref={email} onChange={formik.handleChange} value={formik.values.email} type="email" id='email' name='email' className='rounded w-[95vw] sm:w-[400px] dark:text-black border-gray-300 border-2 focus:border-[#000] focus:ring-0' />
-          </div> */}
-
           <div className='flex flex-col w-full mt-2'>
             <label htmlFor="password">Password:</label>
             <TextField
@@ -130,7 +125,7 @@ export default function Login() {
               id="password"
               name="password"
               size='small'
-              sx={{'input':{'padding': '10px'}}}
+              sx={{ 'input': { 'padding': '10px' } }}
               slotProps={{
                 input: {
                   startAdornment: (
@@ -147,10 +142,6 @@ export default function Login() {
               }}
             />
           </div>
-          {/* <div className='flex flex-col w-full mt-2'>
-            <label htmlFor="password">Password:</label>
-            <input ref={password} onChange={formik.handleChange} value={formik.values.password} type="password" id='password' name='password' className='rounded w-[95vw] dark:text-black sm:w-[400px] border-gray-300 border-2 focus:border-[#000] focus:ring-0' />
-          </div> */}
 
 
           <Link to={'/forgetpassword'} className='mt-2 text-right text-gray-500 block hover:text-black dark:hover:text-gray-300 font-[500] transition-colors'>Forget your password?</Link>
