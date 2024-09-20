@@ -79,7 +79,13 @@ function App() {
           ), errorElement: <ErrorBoundary></ErrorBoundary>
         },
         { path: '*', element: <NotFound></NotFound>, errorElement: <ErrorBoundary></ErrorBoundary> },
-        { path: '/products/:category/:brand', element: <ProtectedRoute><Products></Products></ProtectedRoute>, errorElement: <ErrorBoundary></ErrorBoundary> },
+        { path: '/products/:category/:brand', element: (
+          <ProtectedRoute>
+            <Suspense fallback={<Loader></Loader>}>
+              <Products></Products>
+            </Suspense>
+          </ProtectedRoute>
+        ), errorElement: <ErrorBoundary></ErrorBoundary> },
         { path: '/cart', element: <ProtectedRoute><Cart></Cart></ProtectedRoute>, errorElement: <ErrorBoundary></ErrorBoundary> },
         { path: '/wishlist', element: <ProtectedRoute><WishList></WishList></ProtectedRoute>, errorElement: <ErrorBoundary></ErrorBoundary> },
         {
